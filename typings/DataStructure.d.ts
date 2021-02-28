@@ -8,7 +8,7 @@ export namespace DataStructure {
 	 */
 	export interface Emote {
 		name: string;
-		submitted_by?: string;
+		owner?: string;
 		private?: boolean;
 		mime?: string;
 		url: string;
