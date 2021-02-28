@@ -1,4 +1,5 @@
 import { API } from './API';
+import { ObjectId } from 'mongodb';
 
 export namespace DataStructure {
 	/**
@@ -6,12 +7,11 @@ export namespace DataStructure {
 	 * 
 	 * @collection emotes
 	 */
-	export interface Emote {
+	export interface Emote extends MongoDocument {
 		name: string;
-		owner?: string;
+		owner?: ObjectId | string;
 		private?: boolean;
 		mime?: string;
-		url: string;
 	}
 
 	/**
@@ -19,7 +19,7 @@ export namespace DataStructure {
 	 * 
 	 * @collection users
 	 */
-	export interface TwitchUser {
+	export interface TwitchUser extends MongoDocument {
 		broadcaster_type: string;
 		description: string;
 		display_name: string;
@@ -38,7 +38,11 @@ export namespace DataStructure {
 	 * 
 	 * @collection oauth
 	 */
-	export interface BearerToken extends API.OAuth2.AuthCodeGrant {
+	export interface BearerToken extends API.OAuth2.AuthCodeGrant, MongoDocument {
 		user_id: string;
 	}
+}
+
+export interface MongoDocument {
+	_id: ObjectId | undefined;
 }

@@ -1,0 +1,22 @@
+{
+  "name": "seventv-typings",
+  "version": "1.0.0",
+  "description": "Types shared across 7TV components",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SevenTV/Typings.git"
+  },
+  "author": "Anatole",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SevenTV/Typings/issues"
+  },
+  "homepage": "https://github.com/SevenTV/Typings#readme",
+  "devDependencies": {
+    "@types/mongodb": "^3.6.8"
+  }
+}

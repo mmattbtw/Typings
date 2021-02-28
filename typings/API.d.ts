@@ -1,4 +1,9 @@
 export namespace API {
+
+	export interface TokenPayload {
+		id: string;
+		twid: string;
+	}
 	export namespace OAuth2 {
 		export interface AuthCodeGrant {
 			access_token: string;
