@@ -12,6 +12,7 @@ export namespace DataStructure {
 		owner?: ObjectId | string;
 		owner_name?: string;
 		private?: boolean;
+		global?: boolean;
 		mime?: string;
 	}
 
@@ -21,6 +22,7 @@ export namespace DataStructure {
 	 * @collection users
 	 */
 	export interface TwitchUser extends MongoDocument {
+		role?: API.Users.Role;
 		broadcaster_type: string;
 		description: string;
 		display_name: string;
@@ -29,9 +31,9 @@ export namespace DataStructure {
 		offline_image_url: string;
 		profile_image_url: string;
 		type: string;
-		view_count: string;
+		view_count: number;
 		email: string;
-		created_at: string;
+		created_at: string | Date;
 	}
 
 	/**
