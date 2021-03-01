@@ -10,6 +10,7 @@ export namespace DataStructure {
 	export interface Emote extends MongoDocument {
 		name: string;
 		owner?: ObjectId | string;
+		owner_name?: string;
 		private?: boolean;
 		mime?: string;
 	}
