@@ -1,5 +1,5 @@
 {
-  "name": "seventv-typings",
+  "name": "seventv-lib",
   "version": "1.0.0",
   "description": "Types shared across 7TV components",
   "main": "index.ts",

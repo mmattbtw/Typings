@@ -1,5 +1,6 @@
 import { API } from './API';
 import { ObjectId } from 'mongodb';
+import { Constants } from '../src/Constants';
 
 export namespace DataStructure {
 	/**
@@ -14,6 +15,7 @@ export namespace DataStructure {
 		private?: boolean;
 		global?: boolean;
 		mime?: string;
+		status: Constants.Emotes.Status;
 	}
 
 	/**
@@ -22,7 +24,8 @@ export namespace DataStructure {
 	 * @collection users
 	 */
 	export interface TwitchUser extends MongoDocument {
-		role?: API.Users.Role;
+		rank?: Constants.Users.Rank;
+		emotes: (ObjectId | string)[];
 		broadcaster_type: string;
 		description: string;
 		display_name: string;
