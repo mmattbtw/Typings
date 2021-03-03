@@ -16,6 +16,7 @@ export namespace DataStructure {
 		global?: boolean;
 		mime?: string;
 		status: Constants.Emotes.Status;
+		tags: string[];
 	}
 
 	/**
