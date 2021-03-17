@@ -6,6 +6,8 @@ export namespace Constants {
 			MODERATOR = 1,
 			ADMIN = 100
 		}
+
+		export const LOGIN_REGEXP = /^[a-zA-Z0-9_]{4,25}$/;
 	}
 
 	export namespace Emotes {
