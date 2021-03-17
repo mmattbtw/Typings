@@ -3,6 +3,8 @@ import { ObjectId } from 'mongodb';
 import { Constants } from '../src/Constants';
 
 export namespace DataStructure {
+	export type CollectioName = 'emotes' | 'users' | 'bans' | 'audit' | 'oauth';
+
 	/**
 	 * An Emote object, representing an emote created by the app
 	 * 
@@ -59,44 +61,46 @@ export namespace DataStructure {
 		export interface Entry extends MongoDocument {
 			type: Entry.Type;
 			action_user: ObjectId;
-			targe_id?: Entry.Target;
+			target?: Entry.Target;
 			changes: Entry.Change[];
 			reason?: string;
 		}
 		export namespace Entry {
 			export interface Change {
 				key: string;
-				old_value?: string;
-				new_value?: string;
+				old_value?: any;
+				new_value?: any;
 			}
 
 			export interface Target {
-				type: string;
+				type: CollectioName;
 				id: ObjectId;
 			}
 
 			export enum Type {
-				// Range 1-10 (Emote Actions)
+				// Range 1-20 (Emote Actions)
 				EMOTE_CREATE = 1, // Emote was created
 				EMOTE_DELETE = 2, // Emote was deleted
 				EMOTE_DISABLE = 3, // Emote was deleted
 				EMOTE_EDIT = 4, // Emote was edited
 
-				// Range 11-20 (Authentication)
-				AUTH_IN = 11, // User logged in
-				AUTH_OUT = 12, // User signed out
+				// Range 21-30 (Authentication)
+				AUTH_IN = 21, // User logged in
+				AUTH_OUT = 22, // User signed out
 	
-				// Range 21-30 (User Actions)
-				USER_CREATE = 21, // User Created
-				USER_DELETE = 22, // User Deleted
-				USER_SUSPEND = 23, // User Suspended
-				USER_EDIT = 24, // User Edited
+				// Range 31-50 (User Actions)
+				USER_CREATE = 31, // User Created
+				USER_DELETE = 32, // User Deleted
+				USER_SUSPEND = 33, // User Suspended
+				USER_EDIT = 34, // User Edited
+				USER_CHANNEL_EMOTE_ADD = 35,
+				USER_CHANNEL_EMOTE_REMOVE = 36,
 
-				// Range 31-40 (Administrator Actions)
-				APP_MAINTENANCE_MODE = 31, // The app was set in maintenance mode, all endpoints locked for regular users
-				APP_ROUTE_LOCK = 32, // An API route was locked
-				APP_LOGS_VIEW = 33, // Logs were viewed
-				APP_SCALE = 34 // App scaled
+				// Range 51-70 (Administrator Actions)
+				APP_MAINTENANCE_MODE = 51, // The app was set in maintenance mode, all endpoints locked for regular users
+				APP_ROUTE_LOCK = 52, // An API route was locked
+				APP_LOGS_VIEW = 53, // Logs were viewed
+				APP_SCALE = 54 // App scaled
 			}
 		}
 	}
