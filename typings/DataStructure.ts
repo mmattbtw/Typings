@@ -19,6 +19,7 @@ export namespace DataStructure {
 		mime?: string;
 		status: Constants.Emotes.Status;
 		tags: string[];
+		audit_entries?: AuditLog.Entry[];
 	}
 
 	/**
