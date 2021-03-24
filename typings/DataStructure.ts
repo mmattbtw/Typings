@@ -1,6 +1,7 @@
 import { API } from './API';
-import { ObjectId } from 'mongodb';
+import { Long, ObjectId } from 'mongodb';
 import { Constants } from '../src/Constants';
+import { BitField } from '../src/BitField';
 
 export namespace DataStructure {
 	export type CollectioName = 'emotes' | 'users' | 'bans' | 'audit' | 'oauth';
@@ -43,6 +44,49 @@ export namespace DataStructure {
 		created_at: string | Date;
 	}
 
+	export interface Role extends MongoDocument {
+		name: string;
+		color: number;
+		allowed: BigInt | Long;
+		denied: BigInt | Long;
+	}
+
+export namespace Role {
+	export const Permission = {
+		/** Allows creating emotes */
+		CREATE_EMOTE: BigInt(1) << BigInt(0),
+		/** Allows editing own emotes */
+		EDIT_EMOTE_SELF: BigInt(1) << BigInt(1),
+		/** Allows editing all emotes, including those not owned by client user @elevated */
+		EDIT_EMOTE_ALL: BigInt(1) << BigInt(2),
+
+		/** Allows creating reports */
+		CREATE_REPORTS: BigInt(1) << BigInt(3),
+		/** Allows managing reports @elevated */
+		MANAGE_REPORTS: BigInt(1) << BigInt(4),
+
+		/** Allows banning other users @elevated */
+		BAN_USERS: BigInt(1) << BigInt(5),
+
+		/** Grants all permissions @elevated */
+		ADMINISTRATOR: BigInt(1) << BigInt(6),
+
+		/** Allows managing roles */
+		MANAGE_ROLES: BigInt(1) << BigInt(7),
+		/** Allows editing users @elevated */
+		MANAGE_USERS: BigInt(1) << BigInt(8),
+
+		/** Allows adding and removing editors from own channel */
+		MANAGE_EDITORS: BigInt(1) << BigInt(9),
+	}
+
+	export class Permissions extends BitField<keyof typeof Permission> {
+		get flags() { return Permission; }
+	}
+
+	export const DEFAULT_PERMISSIONS = Permission.CREATE_EMOTE & Permission.EDIT_EMOTE_SELF & Permission.CREATE_REPORTS & Permission.MANAGE_EDITORS;
+}
+
 	/**
 	 * Banned users
 	 * 
@@ -81,27 +125,31 @@ export namespace DataStructure {
 			export enum Type {
 				// Range 1-20 (Emote Actions)
 				EMOTE_CREATE = 1, // Emote was created
-				EMOTE_DELETE = 2, // Emote was deleted
-				EMOTE_DISABLE = 3, // Emote was deleted
-				EMOTE_EDIT = 4, // Emote was edited
+				EMOTE_DELETE, // Emote was deleted
+				EMOTE_DISABLE, // Emote was deleted
+				EMOTE_EDIT, // Emote was edited
 
 				// Range 21-30 (Authentication)
 				AUTH_IN = 21, // User logged in
-				AUTH_OUT = 22, // User signed out
+				AUTH_OUT , // User signed out
 	
 				// Range 31-50 (User Actions)
 				USER_CREATE = 31, // User Created
-				USER_DELETE = 32, // User Deleted
-				USER_SUSPEND = 33, // User Suspended
-				USER_EDIT = 34, // User Edited
-				USER_CHANNEL_EMOTE_ADD = 35,
-				USER_CHANNEL_EMOTE_REMOVE = 36,
+				USER_DELETE, // User Deleted
+				USER_SUSPEND, // User Suspended
+				USER_EDIT, // User Edited
+				USER_CHANNEL_EMOTE_ADD,
+				USER_CHANNEL_EMOTE_REMOVE,
 
 				// Range 51-70 (Administrator Actions)
 				APP_MAINTENANCE_MODE = 51, // The app was set in maintenance mode, all endpoints locked for regular users
-				APP_ROUTE_LOCK = 52, // An API route was locked
-				APP_LOGS_VIEW = 53, // Logs were viewed
-				APP_SCALE = 54 // App scaled
+				APP_ROUTE_LOCK, // An API route was locked
+				APP_LOGS_VIEW, // Logs were viewed
+				APP_SCALE, // App scaled
+				APP_NODE_CREATE, // New k8s worker node created
+				APP_NODE_DELETE, // k8s worker node deleted
+				APP_NODE_JOIN, // k8s worker node joined to the cluster
+				APP_NODE_UNREF, // k8s worker node removed from the cluster
 			}
 		}
 	}

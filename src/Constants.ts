@@ -27,5 +27,7 @@ export namespace Constants {
 			`${MIN_EMOTE_LENGTH}-${MAX_EMOTE_LENGTH} characters, `,
 			`be alphanumeric, and it may contain underscores and dashes.`
 		);
+
+		export type ALLOWED_EXTENSIONS = 'gif' | 'png' | 'webp';
 	}
 }
