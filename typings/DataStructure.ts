@@ -29,7 +29,9 @@ export namespace DataStructure {
 	 * @collection users
 	 */
 	export interface TwitchUser extends MongoDocument {
+		/** @deprecated - succeeded by role_id  */
 		rank?: Constants.Users.Rank;
+		roles?: ObjectId[];
 		emotes: (ObjectId | string)[];
 		broadcaster_type: string;
 		description: string;
@@ -44,6 +46,11 @@ export namespace DataStructure {
 		created_at: string | Date;
 	}
 
+	/**
+	 * A Role object, containing bitfields defining allowed and denied permissions
+	 * 
+	 * @collection roles
+	 */
 	export interface Role extends MongoDocument {
 		name: string;
 		color: number;
