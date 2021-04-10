@@ -12,15 +12,27 @@ export namespace DataStructure {
 	 * @collection emotes
 	 */
 	export interface Emote extends MongoDocument {
+		id: string;
 		name: string;
-		owner?: ObjectId | string;
-		owner_name?: string;
+		owner?: Partial<TwitchUser>;
+		owner_id?: ObjectId | string;
+		/** @deprecated now visibility  */
 		private?: boolean;
+		/** @deprecated now visibility  */
 		global?: boolean;
+		visibility: number;
+		channels?: Partial<TwitchUser>[];
 		mime?: string;
 		status: Constants.Emotes.Status;
 		tags: string[];
-		audit_entries?: AuditLog.Entry[];
+		audit_entries?: AuditLog.Entry[] | string;
+	}
+	export namespace Emote {
+		export enum Visibility {
+			PRIVATE = 1 << 1,
+			GLOBAL = 1 << 2,
+			HIDDEN = 1 << 3
+		}
 	}
 
 	/**
@@ -31,11 +43,13 @@ export namespace DataStructure {
 	export interface TwitchUser extends MongoDocument {
 		/** @deprecated - succeeded by role_id  */
 		rank?: Constants.Users.Rank;
-		roles?: ObjectId[];
+		role?: ObjectId;
 		emotes: (ObjectId | string)[];
 		broadcaster_type: string;
 		description: string;
 		display_name: string;
+		editor_ids: string;
+		editors?: TwitchUser[];
 		id: string;
 		login: string;
 		offline_image_url: string;
@@ -44,6 +58,7 @@ export namespace DataStructure {
 		view_count: number;
 		email: string;
 		created_at: string | Date;
+		token_version?: string;
 	}
 
 	/**
