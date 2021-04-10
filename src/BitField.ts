@@ -3,6 +3,16 @@ export abstract class BitField<T extends string> extends Set<T> {
 		super();
 	}
 
+	static HasBits(sum: number, bit: number): boolean {
+		return (sum & bit) == bit
+	}
+	static AddBits(sum: number, add: number): number {
+		return sum | add;
+	}
+	static RemoveBits(sum: number, remove: number): number {
+		return sum & ~remove
+	}
+
 	patch(sum: bigint): this {
 		this.bitfield = BigInt(sum);
 
