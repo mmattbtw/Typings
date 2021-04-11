@@ -12,32 +12,15 @@ export namespace DataStructure {
 	 * @collection emotes
 	 */
 	export interface Emote extends MongoDocument {
-		id: string;
 		name: string;
-		owner?: Partial<TwitchUser>;
-		owner_id?: ObjectId | string;
-		/** @deprecated now visibility  */
+		owner?: ObjectId | string;
+		owner_name?: string;
 		private?: boolean;
-		/** @deprecated now visibility  */
 		global?: boolean;
-		visibility: number;
-		channels?: Partial<TwitchUser>[];
 		mime?: string;
 		status: Constants.Emotes.Status;
 		tags: string[];
-		audit_entries?: AuditLog.Entry[] | string;
-		created_at: string | Date;
-	}
-	export namespace Emote {
-		export enum Visibility {
-			PRIVATE = 1 << 0,
-			GLOBAL = 1 << 1,
-			HIDDEN = 1 << 2,
-			OVERRIDE_BTTV = 1 << 3,
-			OVERRIDE_FFZ = 1 << 4,
-			OVERRIDE_TWITCH_GLOBAL = 1 << 5,
-			OVERRIDE_TWITCH_SUBSCRIBER = 1 << 6
-		}
+		audit_entries?: AuditLog.Entry[];
 	}
 
 	/**
@@ -48,14 +31,11 @@ export namespace DataStructure {
 	export interface TwitchUser extends MongoDocument {
 		/** @deprecated - succeeded by role_id  */
 		rank?: Constants.Users.Rank;
-		role?: DataStructure.Role;
-		emotes: Emote[];
-		emote_ids: (ObjectId | string)[];
+		roles?: ObjectId[];
+		emotes: (ObjectId | string)[];
 		broadcaster_type: string;
 		description: string;
 		display_name: string;
-		editor_ids: string;
-		editors?: TwitchUser[];
 		id: string;
 		login: string;
 		offline_image_url: string;
@@ -64,7 +44,6 @@ export namespace DataStructure {
 		view_count: number;
 		email: string;
 		created_at: string | Date;
-		token_version?: string;
 	}
 
 	/**
