@@ -5,6 +5,7 @@ import { BitField } from '../src/BitField';
 
 export namespace DataStructure {
 	export type CollectioName = 'emotes' | 'users' | 'bans' | 'audit' | 'oauth';
+	export const NullObjectId = '000000000000000000000000';
 
 	/**
 	 * An Emote object, representing an emote created by the app
@@ -72,7 +73,8 @@ export namespace DataStructure {
 	 * 
 	 * @collection roles
 	 */
-	export interface Role extends MongoDocument {
+	export interface Role {
+		id: string;
 		name: string;
 		color: number;
 		allowed: BigInt | Long;
@@ -106,6 +108,9 @@ export namespace Role {
 
 		/** Allows adding and removing editors from own channel */
 		MANAGE_EDITORS: BigInt(1) << BigInt(9),
+
+		/** Manage the application stack @elevated */
+		MANAGE_STACK: BigInt(1) << BigInt(10)
 	}
 
 	export class Permissions extends BitField<keyof typeof Permission> {
