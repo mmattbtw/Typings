@@ -113,10 +113,6 @@ export namespace Role {
 		MANAGE_STACK: BigInt(1) << BigInt(10)
 	}
 
-	export class Permissions extends BitField<keyof typeof Permission> {
-		get flags() { return Permission; }
-	}
-
 	export const DEFAULT_PERMISSIONS = Permission.CREATE_EMOTE & Permission.EDIT_EMOTE_SELF & Permission.CREATE_REPORTS & Permission.MANAGE_EDITORS;
 }
 
