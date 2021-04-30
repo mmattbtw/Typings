@@ -12,10 +12,12 @@ export namespace DataStructure {
 	 * 
 	 * @collection emotes
 	 */
-	export interface Emote extends MongoDocument {
+	export interface Emote {
 		id: string;
 		name: string;
 		owner?: Partial<TwitchUser>;
+		/** @deprecated no longer returned by v2 */
+		owner_name?: string;
 		owner_id?: ObjectId | string;
 		/** @deprecated now visibility  */
 		private?: boolean;
@@ -27,7 +29,8 @@ export namespace DataStructure {
 		status: Constants.Emotes.Status;
 		tags: string[];
 		audit_entries?: AuditLog.Entry[] | string;
-		created_at: string | Date;
+		created_at?: string | Date;
+		provider?: Emote.Provider;
 	}
 	export namespace Emote {
 		export enum Visibility {
@@ -39,6 +42,8 @@ export namespace DataStructure {
 			OVERRIDE_TWITCH_GLOBAL = 1 << 5,
 			OVERRIDE_TWITCH_SUBSCRIBER = 1 << 6
 		}
+
+		export type Provider = '7TV' | 'Twitch' | 'BTTV' | 'FFZ';
 	}
 
 	/**
