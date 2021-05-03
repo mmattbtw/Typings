@@ -31,6 +31,7 @@ export namespace DataStructure {
 		audit_entries?: AuditLog.Entry[] | string;
 		created_at?: string | Date;
 		provider?: Emote.Provider;
+		urls?: [string, string][];
 	}
 	export namespace Emote {
 		export enum Visibility {
@@ -43,7 +44,7 @@ export namespace DataStructure {
 			OVERRIDE_TWITCH_SUBSCRIBER = 1 << 6
 		}
 
-		export type Provider = '7TV' | 'Twitch' | 'BTTV' | 'FFZ';
+		export type Provider = '7TV' | 'TWITCH' | 'BTTV' | 'FFZ' | 'EMOJI';
 	}
 
 	/**
