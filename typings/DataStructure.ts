@@ -8,7 +8,7 @@ export namespace DataStructure {
 
 	/**
 	 * An Emote object, representing an emote created by the app
-	 * 
+	 *
 	 * @collection emotes
 	 */
 	export interface Emote {
@@ -48,7 +48,7 @@ export namespace DataStructure {
 
 	/**
 	 * A TwitchUser object, obtained through an OAuth2 connection by an end user
-	 * 
+	 *
 	 * @collection users
 	 */
 	export interface TwitchUser extends MongoDocument {
@@ -75,7 +75,7 @@ export namespace DataStructure {
 
 	/**
 	 * A Role object, containing bitfields defining allowed and denied permissions
-	 * 
+	 *
 	 * @collection roles
 	 */
 	export interface Role {
@@ -86,44 +86,44 @@ export namespace DataStructure {
 		denied: BigInt | Long;
 	}
 
-export namespace Role {
-	export const Permission = {
-		/** Allows creating emotes */
-		CREATE_EMOTE: BigInt(1) << BigInt(0),
-		/** Allows editing own emotes */
-		EDIT_EMOTE_SELF: BigInt(1) << BigInt(1),
-		/** Allows editing all emotes, including those not owned by client user @elevated */
-		EDIT_EMOTE_ALL: BigInt(1) << BigInt(2),
+	export namespace Role {
+		export const Permission = {
+			/** Allows creating emotes */
+			CREATE_EMOTE: BigInt(1) << BigInt(0),
+			/** Allows editing own emotes */
+			EDIT_EMOTE_SELF: BigInt(1) << BigInt(1),
+			/** Allows editing all emotes, including those not owned by client user @elevated */
+			EDIT_EMOTE_ALL: BigInt(1) << BigInt(2),
 
-		/** Allows creating reports */
-		CREATE_REPORTS: BigInt(1) << BigInt(3),
-		/** Allows managing reports @elevated */
-		MANAGE_REPORTS: BigInt(1) << BigInt(4),
+			/** Allows creating reports */
+			CREATE_REPORTS: BigInt(1) << BigInt(3),
+			/** Allows managing reports @elevated */
+			MANAGE_REPORTS: BigInt(1) << BigInt(4),
 
-		/** Allows banning other users @elevated */
-		BAN_USERS: BigInt(1) << BigInt(5),
+			/** Allows banning other users @elevated */
+			BAN_USERS: BigInt(1) << BigInt(5),
 
-		/** Grants all permissions @elevated */
-		ADMINISTRATOR: BigInt(1) << BigInt(6),
+			/** Grants all permissions @elevated */
+			ADMINISTRATOR: BigInt(1) << BigInt(6),
 
-		/** Allows managing roles */
-		MANAGE_ROLES: BigInt(1) << BigInt(7),
-		/** Allows editing users @elevated */
-		MANAGE_USERS: BigInt(1) << BigInt(8),
+			/** Allows managing roles */
+			MANAGE_ROLES: BigInt(1) << BigInt(7),
+			/** Allows editing users @elevated */
+			MANAGE_USERS: BigInt(1) << BigInt(8),
 
-		/** Allows adding and removing editors from own channel */
-		MANAGE_EDITORS: BigInt(1) << BigInt(9),
+			/** Allows adding and removing editors from own channel */
+			MANAGE_EDITORS: BigInt(1) << BigInt(9),
 
-		/** Manage the application stack @elevated */
-		MANAGE_STACK: BigInt(1) << BigInt(10)
+			/** Manage the application stack @elevated */
+			MANAGE_STACK: BigInt(1) << BigInt(10)
+		};
+
+		export const DEFAULT_PERMISSIONS = Permission.CREATE_EMOTE & Permission.EDIT_EMOTE_SELF & Permission.CREATE_REPORTS & Permission.MANAGE_EDITORS;
 	}
-
-	export const DEFAULT_PERMISSIONS = Permission.CREATE_EMOTE & Permission.EDIT_EMOTE_SELF & Permission.CREATE_REPORTS & Permission.MANAGE_EDITORS;
-}
 
 	/**
 	 * Banned users
-	 * 
+	 *
 	 * @collection bans
 	 */
 	export interface Ban extends MongoDocument {
@@ -133,7 +133,7 @@ export namespace Role {
 
 	/**
 	 * AuditLog objects
-	 * 
+	 *
 	 * @collection audit
 	 */
 	export namespace AuditLog {
@@ -165,8 +165,8 @@ export namespace Role {
 
 				// Range 21-30 (Authentication)
 				AUTH_IN = 21, // User logged in
-				AUTH_OUT , // User signed out
-	
+				AUTH_OUT, // User signed out
+
 				// Range 31-50 (User Actions)
 				USER_CREATE = 31, // User Created
 				USER_DELETE, // User Deleted
@@ -190,7 +190,7 @@ export namespace Role {
 
 	/**
 	 * A bearer token grant object linked to a TwitchUser, obtained from a code exchange of an OAuth2 connection by an end user
-	 * 
+	 *
 	 * @collection oauth
 	 */
 	export interface BearerToken extends API.OAuth2.AuthCodeGrant, MongoDocument {
