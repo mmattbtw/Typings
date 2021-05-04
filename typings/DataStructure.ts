@@ -1,7 +1,6 @@
 import { API } from './API';
 import { Long, ObjectId } from 'mongodb';
 import { Constants } from '../src/Constants';
-import { BitField } from '../src/BitField';
 
 export namespace DataStructure {
 	export type CollectioName = 'emotes' | 'users' | 'bans' | 'audit' | 'oauth';
