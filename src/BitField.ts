@@ -1,12 +1,12 @@
 export const BitField = {
 	HasBits(sum: number, bit: number): boolean {
-		return (sum & bit) == bit
+		return (sum & bit) == bit;
 	},
 	AddBits(sum: number, add: number): number {
 		return sum | add;
 	},
 	RemoveBits(sum: number, remove: number): number {
-		return sum & ~remove
+		return sum & ~remove;
 	},
 
 	HasBits64(sum: bigint, bit: bigint): boolean {
@@ -18,4 +18,4 @@ export const BitField = {
 	RemoveBits64(sum: bigint, remove: bigint): bigint {
 		return sum & ~remove;
 	}
-}
+};
