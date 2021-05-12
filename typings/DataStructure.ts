@@ -14,7 +14,7 @@ export namespace DataStructure {
 	export interface Emote {
 		id: string;
 		name: string;
-		owner?: Partial<TwitchUser>;
+		owner?: TwitchUser;
 		/** @deprecated no longer returned by v2 */
 		owner_name?: string;
 		owner_id?: ObjectId | string;
