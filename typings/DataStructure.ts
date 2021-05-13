@@ -61,6 +61,7 @@ export namespace DataStructure {
 		description: string;
 		display_name: string;
 		editor_ids: string;
+		editor_in?: TwitchUser[];
 		editors?: TwitchUser[];
 		id: string;
 		login: string;
