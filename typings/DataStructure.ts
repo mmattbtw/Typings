@@ -31,6 +31,8 @@ export namespace DataStructure {
 		created_at?: string | Date;
 		provider?: Emote.Provider;
 		urls?: [string, string][];
+		height?: number[];
+		width?: number[];
 	}
 	export namespace Emote {
 		export enum Visibility {
@@ -57,6 +59,7 @@ export namespace DataStructure {
 		role?: DataStructure.Role;
 		emotes: Emote[];
 		emote_ids: (ObjectId | string)[];
+		owned_emotes: DataStructure.Emote[];
 		broadcaster_type: string;
 		description: string;
 		display_name: string;
