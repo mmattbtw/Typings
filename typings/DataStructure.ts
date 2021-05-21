@@ -88,6 +88,7 @@ export namespace DataStructure {
 		color: number;
 		allowed: BigInt | Long;
 		denied: BigInt | Long;
+		position: number;
 	}
 
 	export namespace Role {
