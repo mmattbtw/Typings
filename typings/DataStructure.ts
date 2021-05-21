@@ -75,6 +75,8 @@ export namespace DataStructure {
 		email: string;
 		created_at: string | Date;
 		token_version?: string;
+		banned?: boolean;
+		bans?: Ban[];
 	}
 
 	/**
@@ -132,8 +134,11 @@ export namespace DataStructure {
 	 * @collection bans
 	 */
 	export interface Ban extends MongoDocument {
-		user: ObjectId;
+		user_d: string;
 		reason: string;
+		active: boolean;
+		issued_by_id: string;
+		expire_at: Date | string;
 	}
 
 	/**
