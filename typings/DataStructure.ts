@@ -59,6 +59,7 @@ export namespace DataStructure {
 		role?: DataStructure.Role;
 		emotes: Emote[];
 		emote_ids: (ObjectId | string)[];
+		emote_aliases: string[][];
 		owned_emotes: DataStructure.Emote[];
 		broadcaster_type: string;
 		description: string;
