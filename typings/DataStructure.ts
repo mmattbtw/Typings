@@ -27,7 +27,7 @@ export namespace DataStructure {
 		mime?: string;
 		status: Constants.Emotes.Status;
 		tags: string[];
-		audit_entries?: AuditLog.Entry[] | string;
+		audit_entries?: AuditLog.Entry[];
 		created_at?: string | Date;
 		provider?: Emote.Provider;
 		urls?: [string, string][];
@@ -78,6 +78,7 @@ export namespace DataStructure {
 		token_version?: string;
 		banned?: boolean;
 		bans?: Ban[];
+		audit_entries: DataStructure.AuditLog.Entry[];
 	}
 
 	/**
@@ -149,8 +150,11 @@ export namespace DataStructure {
 	 */
 	export namespace AuditLog {
 		export interface Entry extends MongoDocument {
+			id: string;
 			type: Entry.Type;
-			action_user: ObjectId;
+			timestamp: Date | string;
+			action_user: TwitchUser;
+			action_user_id: string;
 			target?: Entry.Target;
 			changes: Entry.Change[];
 			reason?: string;
@@ -158,12 +162,14 @@ export namespace DataStructure {
 		export namespace Entry {
 			export interface Change {
 				key: string;
+				values?: any[];
 				old_value?: any;
 				new_value?: any;
 			}
 
 			export interface Target {
 				type: CollectioName;
+				data: string;
 				id: ObjectId;
 			}
 
@@ -175,19 +181,23 @@ export namespace DataStructure {
 				EMOTE_EDIT, // Emote was edited
 
 				// Range 21-30 (Authentication)
-				AUTH_IN = 21, // User logged in
+				AUTH_IN = 20, // User logged in
 				AUTH_OUT, // User signed out
 
 				// Range 31-50 (User Actions)
-				USER_CREATE = 31, // User Created
+				USER_CREATE = 30, // User Created
 				USER_DELETE, // User Deleted
 				USER_SUSPEND, // User Suspended
 				USER_EDIT, // User Edited
 				USER_CHANNEL_EMOTE_ADD,
 				USER_CHANNEL_EMOTE_REMOVE,
+				USER_UNBAN,
+				USER_CHANNEL_EDITOR_ADD,
+				USER_CHANNEL_EDITOR_REMOVE,
+				USER_CHANNEL_EMOTE_EDIT,
 
 				// Range 51-70 (Administrator Actions)
-				APP_MAINTENANCE_MODE = 51, // The app was set in maintenance mode, all endpoints locked for regular users
+				APP_MAINTENANCE_MODE = 50, // The app was set in maintenance mode, all endpoints locked for regular users
 				APP_ROUTE_LOCK, // An API route was locked
 				APP_LOGS_VIEW, // Logs were viewed
 				APP_SCALE, // App scaled
