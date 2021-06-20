@@ -79,6 +79,7 @@ export namespace DataStructure {
 		banned?: boolean;
 		bans?: Ban[];
 		audit_entries: DataStructure.AuditLog.Entry[];
+		emote_slots: number;
 	}
 
 	/**
