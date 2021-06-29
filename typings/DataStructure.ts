@@ -79,6 +79,24 @@ export namespace DataStructure {
 		banned?: boolean;
 		bans?: Ban[];
 		audit_entries: DataStructure.AuditLog.Entry[];
+		emote_slots: number;
+		broadcast: Broadcast;
+		follower_count: number;
+	}
+
+	export interface Broadcast {
+		id: string;
+		title: string;
+		thumbnail_url: string;
+		viewer_count: number;
+		type: string;
+		game_name: string;
+		game_id: string;
+		language: string;
+		tags: string[];
+		mature: boolean;
+		started_at: Date | string;
+		user_id: string;
 	}
 
 	/**
