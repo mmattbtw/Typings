@@ -197,6 +197,7 @@ export namespace DataStructure {
 				EMOTE_DELETE, // Emote was deleted
 				EMOTE_DISABLE, // Emote was deleted
 				EMOTE_EDIT, // Emote was edited
+				EMOTE_MERGE, // Emote was merged
 
 				// Range 21-30 (Authentication)
 				AUTH_IN = 20, // User logged in
