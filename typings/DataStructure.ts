@@ -126,8 +126,7 @@ export namespace DataStructure {
 	export namespace Notification {
 		export interface MessagePart {
 			type: number;
-			text: string | null;
-			mention: string | null;
+			data: string;
 		}
 
 		export enum MessagePartType {
