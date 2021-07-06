@@ -82,6 +82,8 @@ export namespace DataStructure {
 		emote_slots: number;
 		broadcast: Broadcast;
 		follower_count: number;
+		notification_count?: number;
+		notifications: Notification[];
 	}
 
 	export interface Broadcast {
@@ -111,6 +113,29 @@ export namespace DataStructure {
 		allowed: BigInt | Long;
 		denied: BigInt | Long;
 		position: number;
+	}
+
+	export interface Notification {
+		id: string;
+		title: string;
+		message_parts: [];
+		read?: boolean;
+		users: TwitchUser[];
+		emotes: Emote[];
+	}
+	export namespace Notification {
+		export interface MessagePart {
+			type: number;
+			text: string | null;
+			mention: string | null;
+		}
+
+		export enum MessagePartType {
+			TEXT = 1,
+			USER_MENTION,
+			EMOTE_MENTION,
+			ROLE_MENTION						
+		}
 	}
 
 	export namespace Role {
