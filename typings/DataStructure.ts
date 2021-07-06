@@ -82,6 +82,8 @@ export namespace DataStructure {
 		emote_slots: number;
 		broadcast: Broadcast;
 		follower_count: number;
+		notification_count?: number;
+		notifications: Notification[];
 	}
 
 	export interface Broadcast {
