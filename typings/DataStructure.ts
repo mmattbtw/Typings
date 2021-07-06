@@ -113,6 +113,29 @@ export namespace DataStructure {
 		position: number;
 	}
 
+	export interface Notification {
+		id: string;
+		title: string;
+		message_parts: [];
+		read?: boolean;
+		users: TwitchUser[];
+		emotes: Emote[];
+	}
+	export namespace Notification {
+		export interface MessagePart {
+			type: number;
+			text: string | null;
+			mention: string | null;
+		}
+
+		export enum MessagePartType {
+			TEXT = 1,
+			USER_MENTION,
+			EMOTE_MENTION,
+			ROLE_MENTION						
+		}
+	}
+
 	export namespace Role {
 		export const Permission = {
 			/** Allows creating emotes */
