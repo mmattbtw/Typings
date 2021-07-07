@@ -118,8 +118,10 @@ export namespace DataStructure {
 	export interface Notification {
 		id: string;
 		title: string;
+		timestamp: string | Date;
 		message_parts: [];
 		read?: boolean;
+		read_at?: string | Date;
 		users: TwitchUser[];
 		emotes: Emote[];
 	}
