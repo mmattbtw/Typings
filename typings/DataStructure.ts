@@ -15,14 +15,9 @@ export namespace DataStructure {
 		id: string;
 		name: string;
 		owner?: TwitchUser;
-		/** @deprecated no longer returned by v2 */
-		owner_name?: string;
 		owner_id?: ObjectId | string;
-		/** @deprecated now visibility  */
-		private?: boolean;
-		/** @deprecated now visibility  */
-		global?: boolean;
 		visibility: number;
+		channel_count?: number;
 		channels?: Partial<TwitchUser>[];
 		mime?: string;
 		status: Constants.Emotes.Status;
