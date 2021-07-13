@@ -163,7 +163,9 @@ export namespace DataStructure {
 			MANAGE_EDITORS: BigInt(1) << BigInt(9),
 
 			/** Manage the application stack @elevated */
-			MANAGE_STACK: BigInt(1) << BigInt(10)
+			MANAGE_STACK: BigInt(1) << BigInt(10),
+
+			EDIT_APP_META: BigInt(1) << BigInt(11)
 		};
 
 		export const DEFAULT_PERMISSIONS = Permission.CREATE_EMOTE & Permission.EDIT_EMOTE_SELF & Permission.CREATE_REPORTS & Permission.MANAGE_EDITORS;
