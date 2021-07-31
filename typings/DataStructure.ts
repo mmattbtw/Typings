@@ -131,7 +131,7 @@ export namespace DataStructure {
 			TEXT = 1,
 			USER_MENTION,
 			EMOTE_MENTION,
-			ROLE_MENTION						
+			ROLE_MENTION
 		}
 	}
 
