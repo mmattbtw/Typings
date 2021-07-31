@@ -37,7 +37,8 @@ export namespace DataStructure {
 			OVERRIDE_BTTV = 1 << 3,
 			OVERRIDE_FFZ = 1 << 4,
 			OVERRIDE_TWITCH_GLOBAL = 1 << 5,
-			OVERRIDE_TWITCH_SUBSCRIBER = 1 << 6
+			OVERRIDE_TWITCH_SUBSCRIBER = 1 << 6,
+			ZERO_WIDTH = 1 << 7
 		}
 
 		export type Provider = '7TV' | 'TWITCH' | 'BTTV' | 'FFZ' | 'EMOJI';
