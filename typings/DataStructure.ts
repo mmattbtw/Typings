@@ -82,6 +82,17 @@ export namespace DataStructure {
 		follower_count: number;
 		notification_count?: number;
 		notifications: Notification[];
+		cosmetics: Cosmetic[];
+	}
+
+	export interface Cosmetic {
+		id: string;
+		kind: Cosmetic.Kind;
+		name: string;
+		data: string;
+	}
+	export namespace Cosmetic {
+		export type Kind = 'BADGE' | 'PAINT';
 	}
 
 	export interface Broadcast {
